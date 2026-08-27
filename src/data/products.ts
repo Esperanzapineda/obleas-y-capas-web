@@ -5,7 +5,7 @@ export const products : Product[] = [
         id: 'bowl-clasico',
         name: 'Bowl Clasico',
         description: 'Capas de oblea artesanal triturada con nuestra selección de cremas base y tu salsa favorita.',
-        price: 8.000,
+        price: 8000,
         imageUrl: '/images/bowl-clasico.jpg',
         category: 'bowl',
         isCustomizable: true,
