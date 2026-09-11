@@ -1,9 +1,11 @@
-import Image from 'next/image';
 import { Product } from '@/types';
 import { formatCurrency } from '@/lib/format';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+
+// NUEVO: Importamos el configurador
+import { ProductConfigurator } from './ProductConfigurator';
 
 interface ProductCardProps {
   product: Product;
@@ -25,23 +27,28 @@ export function ProductCard({ product }: ProductCardProps) {
             {formatCurrency(product.price)}
           </Badge>
         </div>
-        <CardDescription className="line-clamp-2 mt-2 text-sm">
+        <CardDescription className="mt-2 line-clamp-2 text-sm">
           {product.description}
         </CardDescription>
       </CardHeader>
 
       <CardContent className="flex-grow">
         {product.isCustomizable && (
-          <span className="text-xs font-medium text-amber-600 bg-amber-50 px-2 py-1 rounded-full">
+          <span className="rounded-full bg-amber-50 px-2 py-1 text-xs font-medium text-amber-600">
             Arma tu bowl
           </span>
         )}
       </CardContent>
 
       <CardFooter>
-        <Button className="w-full font-bold">
-          Configurar y Agregar
-        </Button>
+        {/* CORRECCIÓN: El configurador ahora es autocontenido */}
+        {product.isCustomizable ? (
+          <ProductConfigurator product={product} />
+        ) : (
+          <Button className="w-full font-bold">
+            Agregar
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );
