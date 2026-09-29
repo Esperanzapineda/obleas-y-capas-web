@@ -6,10 +6,10 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="mb-8 text-center md:text-left">
-        <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+        <h1 className="text-4xl font-extrabold tracking-tight text-amber-500 sm:text-5xl text-center">
           Nuestros Bowls 🍨
         </h1>
-        <p className="mt-4 text-lg text-slate-600">
+        <p className="mt-4 text-lg text-slate-600 text-center">
           Capa tras capa de oblea crujiente, nuestra crema de la casa y tus sabores favoritos.
         </p>
       </div>

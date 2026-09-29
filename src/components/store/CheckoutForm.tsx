@@ -58,12 +58,12 @@ export function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
   }
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full flex-col ml-3 mr-3">
       <div className="mb-4 flex items-center gap-2">
         <Button variant="ghost" size="icon" onClick={onBack} className="h-8 w-8">
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="h-4 w-4"/>
         </Button>
-        <h3 className="font-bold text-lg">Datos de Entrega</h3>
+        <h3 className="font-bold text-lg text-rose-700">Datos de Entrega</h3>
       </div>
 
       <Form {...form}>
@@ -73,7 +73,7 @@ export function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
             name="name"
             render={({ field }) => (
                <FormItem>
-                 <FormLabel>Nombre y Apellido</FormLabel>
+                 <FormLabel className="text-rose-700">Nombre y Apellido</FormLabel>
                  <FormControl>
                    <Input placeholder="Ej: Juan Pérez" {...field} />
                  </FormControl>
@@ -87,7 +87,7 @@ export function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
             name="address"
             render={({ field }) => (
                <FormItem>
-                 <FormLabel>Dirección (Tunja)</FormLabel>
+                 <FormLabel className="text-rose-700">Dirección (Tunja)</FormLabel>
                  <FormControl>
                    <Input placeholder="Ej: Calle 12 #34-56, Apto 201" {...field} />
                  </FormControl>
@@ -101,7 +101,7 @@ export function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
             name="paymentMethod"
             render={({ field }) => (
               <FormItem className="space-y-3">
-                <FormLabel>Método de Pago</FormLabel>
+                <FormLabel className="text-rose-700">Método de Pago</FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
@@ -132,7 +132,7 @@ export function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
             name="notes"
             render={({ field }) => (
                <FormItem>
-                 <FormLabel>Notas (Opcional)</FormLabel>
+                 <FormLabel className="text-rose-700">Notas (Opcional)</FormLabel>
                  <FormControl>
                    <Textarea placeholder="Ej: Timbre dañado, llamar al llegar..." className="resize-none" {...field} />
                  </FormControl>
@@ -142,7 +142,7 @@ export function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
           />
 
           <div className="mt-auto pt-4 border-t">
-             <Button type="submit" className="w-full bg-green-600 font-bold text-white hover:bg-green-700">
+             <Button type="submit" className="w-full bg-amber-400 font-bold text-rose-700 hover:bg-amber-300 mb-3">
                Enviar Pedido a WhatsApp
              </Button>
           </div>

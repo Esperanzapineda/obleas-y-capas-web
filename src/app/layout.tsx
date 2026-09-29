@@ -27,9 +27,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <Navbar/>
-        <main className="min-h-screen bg-slate-50"></main>
-          {children}
-        <main/>
+        <main className="min-h-screen bg-slate-50">
+        {children}
+        </main>
         <AiSommelier/>
       </body>
     </html>

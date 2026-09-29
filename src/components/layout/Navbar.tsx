@@ -6,7 +6,7 @@ export function Navbar() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <span className="text-2xl font-black tracking-tighter text-slate-900">
-            Oblea<span className="text-amber-500">&</span>Capas
+            Oblea<span className="text-rose-700">&</span>Capas
           </span>
         </div>
 

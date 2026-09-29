@@ -16,7 +16,7 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-} from '@/components/ui/sheet'; // Quitamos SheetTrigger de aquí
+} from '@/components/ui/sheet';
 
 interface ProductConfiguratorProps {
   product: Product;
@@ -56,7 +56,7 @@ export function ProductConfigurator({ product }: ProductConfiguratorProps) {
   return (
     <>
       <Button 
-        className="w-full font-bold" 
+        className="w-full font-bold bg-amber-400 text-rose-700 hover:bg-amber-300" 
         onClick={() => setIsOpen(true)}
       >
         Configurar y Agregar
@@ -65,19 +65,20 @@ export function ProductConfigurator({ product }: ProductConfiguratorProps) {
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetContent className="flex w-full flex-col sm:max-w-md">
           <SheetHeader>
-            <SheetTitle>Configura tu {product.name}</SheetTitle>
+            <SheetTitle className="text-rose-700">Configura tu {product.name}</SheetTitle>
             <SheetDescription>
               Elige tus salsas y toppings para acompañar nuestra crema de la casa.
             </SheetDescription>
           </SheetHeader>
 
-          <ScrollArea className="flex-1 py-4 pr-4">
+          <ScrollArea className="flex-1 py-4 pr-4 ml-3">
             <div className="mb-6">
-              <h4 className="mb-3 font-semibold text-slate-900">Salsas</h4>
+              <h4 className="mb-3 font-semibold text-rose-700">Salsas</h4>
               <div className="flex flex-col gap-4">
                 {availableExtras.sauces.map((sauce) => (
                   <div key={sauce} className="flex items-center space-x-2">
                     <Checkbox
+                      className="hover:bg-amber-300"
                       id={`sauce-${sauce}`}
                       checked={selectedSauces.includes(sauce)}
                       onCheckedChange={() => handleToggle(sauce, selectedSauces, setSelectedSauces)}
@@ -91,11 +92,12 @@ export function ProductConfigurator({ product }: ProductConfiguratorProps) {
             </div>
 
             <div>
-              <h4 className="mb-3 font-semibold text-slate-900">Toppings</h4>
+              <h4 className="mb-3 font-semibold text-rose-700">Toppings</h4>
               <div className="flex flex-col gap-4">
                 {availableExtras.toppings.map((topping) => (
                   <div key={topping} className="flex items-center space-x-2">
                     <Checkbox
+                      className="hover:bg-amber-300"
                       id={`topping-${topping}`}
                       checked={selectedToppings.includes(topping)}
                       onCheckedChange={() => handleToggle(topping, selectedToppings, setSelectedToppings)}
@@ -109,8 +111,8 @@ export function ProductConfigurator({ product }: ProductConfiguratorProps) {
             </div>
           </ScrollArea>
 
-          <SheetFooter className="mt-4 pb-6 sm:pb-0">
-            <Button onClick={handleAddToCart} className="w-full font-bold">
+          <SheetFooter className="mt-4 mb-3 pb-6 sm:pb-0">
+            <Button onClick={handleAddToCart} className="w-full font-bold bg-amber-400 text-rose-700 hover:bg-amber-300">
               Agregar al carrito - {formatCurrency(product.price)}
             </Button>
           </SheetFooter>

@@ -1,4 +1,3 @@
-// src/components/store/CartDrawer.tsx
 'use client';
 
 import { useState } from 'react';
@@ -15,13 +14,11 @@ import {
   SheetFooter,
 } from '@/components/ui/sheet';
 
-// Importamos el nuevo formulario
 import { CheckoutForm } from './CheckoutForm';
 
 export function CartDrawer() {
   const [isOpen, setIsOpen] = useState(false);
   
-  // NUEVO: Estado para saber en qué vista estamos dentro del menú
   const [isCheckout, setIsCheckout] = useState(false);
 
   const items = useCartStore((state) => state.items);
@@ -30,11 +27,10 @@ export function CartDrawer() {
   
   const totalItems = items.reduce((total, item) => total + item.quantity, 0);
 
-  // Cuando se cierre el modal, regresamos a la vista del carrito por defecto
   const handleOpenChange = (open: boolean) => {
     setIsOpen(open);
     if (!open) {
-      setTimeout(() => setIsCheckout(false), 300); // Esperamos a que termine la animación de cerrar
+      setTimeout(() => setIsCheckout(false), 300);
     }
   };
 
@@ -49,7 +45,7 @@ export function CartDrawer() {
         <ShoppingBag className="h-5 w-5" />
         <span 
           suppressHydrationWarning
-          className={`absolute -right-1 -top-1 h-5 w-5 items-center justify-center rounded-full bg-amber-500 text-[10px] font-bold text-white ${totalItems > 0 ? 'flex' : 'hidden'}`}
+          className={`absolute -right-1 -top-1 h-5 w-5 items-center justify-center rounded-full bg-rose-700 text-[10px] font-bold text-white ${totalItems > 0 ? 'flex' : 'hidden'}`}
         >
           {totalItems}
         </span>
@@ -58,7 +54,6 @@ export function CartDrawer() {
       <Sheet open={isOpen} onOpenChange={handleOpenChange}>
         <SheetContent className="flex w-full flex-col sm:max-w-lg">
           
-          {/* RENDERIZADO CONDICIONAL: ¿Mostramos el Formulario o el Carrito? */}
           {isCheckout ? (
             <div className="mt-6 flex-1 overflow-y-auto">
                <CheckoutForm 
@@ -67,27 +62,26 @@ export function CartDrawer() {
                />
             </div>
           ) : (
-            // --- INICIO VISTA DEL CARRITO (Tu código actual) ---
             <>
               <SheetHeader>
-                <SheetTitle className="flex items-center gap-2">
-                  <ShoppingBag className="h-5 w-5" />
+                <SheetTitle className="flex items-center gap-2 text-rose-700">
+                  <ShoppingBag className="h-5 w-5 text-amber-400" />
                   Tu Pedido
                 </SheetTitle>
               </SheetHeader>
 
-              <ScrollArea className="flex-1 py-4 pr-4">
+              <ScrollArea className="flex-1 py-4 pr-4 ml-6">
                 {items.length === 0 ? (
                   <div className="mt-20 flex h-full flex-col items-center justify-center space-y-2 text-slate-500">
-                    <ShoppingBag className="h-12 w-12 opacity-20" />
-                    <p>Tu carrito está vacío</p>
+                    <ShoppingBag className="h-12 w-12 opacity-20 text-amber-500" />
+                    <p className='text-rose-700'>Tu carrito está vacío</p>
                   </div>
                 ) : (
                   <div className="flex flex-col gap-6">
                     {items.map((item) => (
                       <div key={item.cartItemId} className="flex items-start justify-between gap-4 border-b pb-4">
                         <div className="flex-1">
-                          <h4 className="font-semibold text-slate-900">{item.name}</h4>
+                          <h4 className="font-semibold text-rose-700">{item.name}</h4>
                           
                           <div className="mt-1 text-sm text-slate-500">
                             {item.selectedSauces && item.selectedSauces.length > 0 && (
@@ -98,7 +92,7 @@ export function CartDrawer() {
                             )}
                           </div>
                           
-                          <div className="mt-2 font-medium text-amber-600">
+                          <div className="mt-2 font-medium text-rose-600">
                             {formatCurrency(item.totalItemPrice)}
                           </div>
                         </div>
@@ -120,20 +114,18 @@ export function CartDrawer() {
               {items.length > 0 && (
                 <SheetFooter className="mt-auto flex-col gap-4 border-t pt-4 sm:flex-col">
                   <div className="flex items-center justify-between text-lg font-bold">
-                    <span>Total:</span>
-                    <span>{formatCurrency(getTotalPrice())}</span>
+                    <span className='text-rose-700'>Total:</span>
+                    <span className='text-rose-700'>{formatCurrency(getTotalPrice())}</span>
                   </div>
-                  {/* AL DAR CLIC AQUÍ, CAMBIAMOS AL FORMULARIO */}
                   <Button 
                     onClick={() => setIsCheckout(true)}
-                    className="w-full bg-green-600 font-bold text-white hover:bg-green-700"
+                    className="w-full bg-amber-400 font-bold text-rose-700 hover:bg-amber-300"
                   >
                     Proceder al Pago
                   </Button>
                 </SheetFooter>
               )}
             </>
-            // --- FIN VISTA DEL CARRITO ---
           )}
           
         </SheetContent>

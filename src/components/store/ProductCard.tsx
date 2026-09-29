@@ -4,8 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
-// NUEVO: Importamos el configurador
 import { ProductConfigurator } from './ProductConfigurator';
+import Image from 'next/image';
+
 
 interface ProductCardProps {
   product: Product;
@@ -15,15 +16,18 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className="flex flex-col overflow-hidden transition-all hover:shadow-lg">
       <div className="relative aspect-square w-full bg-slate-100">
-        <div className="absolute inset-0 flex items-center justify-center text-slate-400">
-          <span className="text-sm">Foto de {product.name}</span>
-        </div>
+        <Image 
+          src={product.imageUrl} 
+          alt={`Foto de ${product.name}`} 
+          fill
+          className="object-cover" 
+        />
       </div>
 
       <CardHeader>
         <div className="flex items-start justify-between gap-2">
-          <CardTitle className="text-xl leading-tight">{product.name}</CardTitle>
-          <Badge variant="secondary" className="font-semibold text-primary">
+          <CardTitle className="text-xl text-amber-500 leading-tight">{product.name}</CardTitle>
+          <Badge variant="secondary" className="font-semibold text-rose-600">
             {formatCurrency(product.price)}
           </Badge>
         </div>
@@ -34,14 +38,13 @@ export function ProductCard({ product }: ProductCardProps) {
 
       <CardContent className="flex-grow">
         {product.isCustomizable && (
-          <span className="rounded-full bg-amber-50 px-2 py-1 text-xs font-medium text-amber-600">
+          <span className="rounded-full bg-rose-50 px-2 py-1 text-xs font-medium text-rose-600">
             Arma tu bowl
           </span>
         )}
       </CardContent>
 
       <CardFooter>
-        {/* CORRECCIÓN: El configurador ahora es autocontenido */}
         {product.isCustomizable ? (
           <ProductConfigurator product={product} />
         ) : (
